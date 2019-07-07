@@ -7,6 +7,7 @@ import request from "superagent";
 import api from "./dataStore/stubAPI"
 
 class App extends Component {
+  state = { search: "", gender: "all" };
   componentDidMount() {
     request.get("https://randomuser.me/api/?results=50").end((error, res) => {
     if (res) {
