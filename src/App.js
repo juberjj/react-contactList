@@ -20,6 +20,11 @@ class App extends Component {
     });
 }
 
+deleteContact = (key) => {
+  api.delete(key); 
+  this.setState({});                          
+};
+
 render(){
  
   let contacts = api.getAll();
@@ -27,7 +32,8 @@ render(){
         <div className="jumbotron">
             <Header noContacts={contacts.length} />
             <FilterControls />
-            <ContactList contacts={contacts} />
+            <ContactList contacts={contacts} 
+            deleteHandler={this.deleteContact} />
         </div>
         );
     }
