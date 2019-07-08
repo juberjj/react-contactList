@@ -37,3 +37,7 @@ storiesOf("Contact List App/Contact List", module).add("default", () => {
 storiesOf("Contact List App/Contact", module).add("default", () => ( 
   <Contact contact={sample} deleteHandler={action('Delete confirmed') }/>
 ));
+
+storiesOf("Contact List App/Filter Controls", module).add("default", () => (
+  <FilterControls onUserInput={action('Search criteria changes') }/>
+));
