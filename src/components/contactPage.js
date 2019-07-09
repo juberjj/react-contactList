@@ -1,11 +1,22 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import { withRouter } from "react-router-dom";
+import api from "../dataStore/stubAPI"; // NEW
+import ContactPublic from "../components/contactPublic/";
+import ContactPrivate from "../components/contactPrivate/";
 
 const ContactPage = props => {
-   return (
+  const { id } = props.match.params;
+  const contact = api.find(id);
+  return (
     <Fragment>
-        <h3> Contact id: {props.match.params.id} </h3>
-        <h3> Detail page stub </h3>
+      {contact ? (
+        <Fragment>
+          <ContactPublic user={contact} />           
+          <ContactPrivate user={contact} />
+        </Fragment>
+      ) : (
+        <p>Waiting for contact details</p>
+      )}
     </Fragment>
   );
 };
