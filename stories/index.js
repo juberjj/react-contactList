@@ -8,6 +8,7 @@ import FilterControls from '../src/components/filterControls/'
 import Contact from '../src/components/contact/'
 import ContactList from '../src/components/contactList/'
 import { action } from '@storybook/addon-actions';
+import PublicProfile from '../src/components/contactPublic/publicProfile'
 
 const sample = {
   name: {first:'Joe', last:'Bloggs'},
@@ -81,4 +82,9 @@ storiesOf("Contact List App/Contact", module).add("default", () => (
 
 storiesOf("Contact List App/Filter Controls", module).add("default", () => (
   <FilterControls onUserInput={action('Search criteria changes') }/>
+));
+
+storiesOf("Contact List App/Contact Page/PublicProfile", module)
+.add("default", () => ( 
+   <PublicProfile user={sample}/>
 ));
