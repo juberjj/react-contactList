@@ -5,8 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./contactPublic.css";
 import { Link } from "react-router-dom";
 import PublicProfile from "../contactPublic/publicProfile"
+import Map from "../map/";
+
 
 export default ({ user }) => {
+  const location = {lng:-7.142379, lat: 52.246502}
   const name = capitalize(`${user.name.first} ${user.name.last}`);
   return (
     <Fragment>
@@ -28,8 +31,15 @@ export default ({ user }) => {
         <div className="col-4">
           <PublicProfile user={user} />
         </div>
-        <div className="col-5 bg-secondary text-light">
-           <span>Map placeholder</span>
+        <div className="col-5" >
+          <Map
+            isMarkerShown
+            googleMapURL={process.env.REACT_APP_map}
+            loadingElement={<div style={{ height: `100%` }} />}
+            location={location}
+            containerElement={<div style={{ height: `400px` }} />}
+            mapElement={<div style={{ height: `100%` }} />}
+            />
         </div>
       </div>
     </Fragment>

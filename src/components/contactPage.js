@@ -13,7 +13,7 @@ const ContactPage = props => {
       <Fragment>
         <ContactPublic user={contact} /> 
          {!props.history.location.pathname.endsWith("/private") && (
-          <Link class="btn btn-primary active" to={`/contacts/${id}/private`}>See Private Data</Link>
+          <Link className="btn btn-primary active" to={`/contacts/${id}/private`}>See Private Data</Link>
         )}
         <Route path={`/contacts/:id/private`} 
             render={ (props) => <ContactPrivate {...props} user={contact} /> } />
