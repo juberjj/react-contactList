@@ -81,4 +81,46 @@ describe("Main View ", () => {
             });
         });
       });
-});
+    
+    describe("Filtering", () => {
+       it("filteres the contacts by name", () => {
+         cy.get("span")
+           .contains("Filter")
+           .next()
+           .type("la");
+         cy.get(".card").each($el => {
+           cy.wrap($el)
+             .find(".card-title")
+             .contains("la");
+         });
+        });
+  
+        it("filters the contacts by gender", () => {
+          cy.get("select").select("Female");
+          cy.get(".card")
+            .its("length")
+            .then(females => {
+              cy.get("select").select("Male");
+              cy.get(".card")
+                .its("length")
+                .should("eq", 50 - females);
+            });
+        });
+    });
+    
+    describe("Navigate to Contact page", () => {
+        it.only("goes to the correct view", () => {
+          cy.get("@targetcard")
+            .find("[data-icon=phone]")
+            .next()
+            .invoke("text")
+            .then(phoneNo => {
+              cy.get("@targetcard")
+                .find("img")
+                .click();
+              cy.url().should("include", `/contacts/${phoneNo.trim()}`);
+              cy.get("span").contains(phoneNo.trim());
+            });
+        });
+    });    
+ });
